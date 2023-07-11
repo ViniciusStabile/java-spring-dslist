@@ -1,6 +1,5 @@
 package dslist.entities;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -12,11 +11,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_game")
-public class Game implements Serializable{
+public class Game {
 
-	
-	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -28,16 +24,18 @@ public class Game implements Serializable{
 	private String platforms;
 	private Double score;
 	private String imgUrl;
+	
+	@Column(columnDefinition = "TEXT")
 	private String shortDescription;
+
+	@Column(columnDefinition = "TEXT")
 	private String longDescription;
 	
-	public Game () {
-		
-	}
-
+    public Game() {
+    }
+    
 	public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
 			String shortDescription, String longDescription) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.year = year;
@@ -46,7 +44,7 @@ public class Game implements Serializable{
 		this.score = score;
 		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
-		this.longDescription = longDescription;
+		this.longDescription = longDescription;		
 	}
 
 	public Long getId() {
@@ -137,7 +135,4 @@ public class Game implements Serializable{
 		Game other = (Game) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
 }
